@@ -20,7 +20,7 @@ export class KeypointCanvas {
         // Draw grid lines
         this.ctx.strokeStyle = '#e9e9e9';
         this.ctx.lineWidth = 0.5;
-        
+
 
         // Vertical lines for every meter
         let meterSpacingX = width / this.scaling.scaleX;
@@ -69,7 +69,7 @@ export class KeypointCanvas {
             const canvasY = (1 - (robotJoint[1] / this.scaling.scaleY)) * height;
 
 
-            let test = robotJoints.model[0]; 
+            let test = robotJoints.model[0];
             // console.log("joint:", test, " Rx: ", test[0], " Ry: ", test[1]);
             // console.log("x: ", ((test[0] + this.scaling.scaleX/2) / this.scaling.scaleX ) * width, " y: ", (1 - (test[1] / this.scaling.scaleY)) * height);
 

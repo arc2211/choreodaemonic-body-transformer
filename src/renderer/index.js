@@ -95,11 +95,11 @@ function handlePoseMessage(poseMessage, mappingsView) {
 
     // Send joints to the robot and UI canvas if not paused.
     let robotMessage = robotOSCFormatter.format(robotJoints.model);
+    
     if(isPaused == false){
        osc.send(robotMessage, RECIPIENT.ip, RECIPIENT.port);
-
-        // Render the user interface.
-        console.log(robotJoints);
+       // Render the user interface.
+       keypointCanvas.render(robotJoints);
     }
 
     keypointTable.render(keypoints.model);
