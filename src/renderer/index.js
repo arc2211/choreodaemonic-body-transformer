@@ -71,8 +71,7 @@ let mappingsView = new MappingsView(KEYPOINT_NAMES);
 mappingsView.render();
 
 let keypoints = new Keypoints(KEYPOINT_NAMES);
-let robotJoints = new RobotJoints(TEMPORARY_HOME_POSITIONS,
-    TEMPORARY_FRAME_TO_ROBOT, mappingsView.model);
+let robotJoints = new RobotJoints(TEMPORARY_HOME_POSITIONS, TEMPORARY_FRAME_TO_ROBOT, mappingsView.model);
 let robotOSCFormatter = new RobotMessageFormatter();
 let keypointCanvas = new KeypointCanvas(document.getElementById("poseCanvas"), TEMPORARY_FRAME_TO_ROBOT);
 let keypointTable = new KeypointTable(KEYPOINT_NAMES);
@@ -100,7 +99,7 @@ function handlePoseMessage(poseMessage, mappingsView) {
        osc.send(robotMessage, RECIPIENT.ip, RECIPIENT.port);
 
         // Render the user interface.
-        keypointCanvas.render(robotJoints);
+        console.log(robotJoints);
     }
 
     keypointTable.render(keypoints.model);
@@ -109,7 +108,7 @@ function handlePoseMessage(poseMessage, mappingsView) {
 
 osc.onBundle((event, bundle) => {
     // Only read the first pose.
-    let poseMessage = bundle.packets[0];
+    let poseMessage = [bundle.packets[0], bundle.packets[1]];
     if (poseMessage) {
         handlePoseMessage(poseMessage, mappingsView);
     }
